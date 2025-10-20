@@ -3,6 +3,40 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Snugbug Brand Colors (exact from logo) */
+  --brand-teal-50: #f0f7f6;
+  --brand-teal-100: #e0ebe9;
+  --brand-teal-200: #d4e5e1;
+  --brand-teal-300: #c8ddd9;
+  --brand-teal-400: #7ebcb0;
+  --brand-teal-500: #5a9d92;
+  --brand-teal-600: #3d7770;
+  --brand-teal-700: #2d5e5a;
+  --brand-teal-800: #1f4946;
+  --brand-teal-900: #1b5758;
+
+  --brand-mint-50: #f0f7f6;
+  --brand-mint-100: #e0ede9;
+  --brand-mint-200: #c8ddd9;
+  --brand-mint-300: #b0cec8;
+  --brand-mint-400: #7ebcb0;
+  --brand-mint-500: #6aab9f;
+  --brand-mint-600: #5a9d92;
+  --brand-mint-700: #4a8579;
+  --brand-mint-800: #3a6d63;
+  --brand-mint-900: #2a554d;
+
+  --brand-pink-50: #fff5f7;
+  --brand-pink-100: #ffe6ec;
+  --brand-pink-200: #ffccd9;
+  --brand-pink-300: #ffb3c6;
+  --brand-pink-400: #ffb6c1;
+  --brand-pink-500: #ff99ab;
+  --brand-pink-600: #ff7a93;
+  --brand-pink-700: #ff5b7a;
+  --brand-pink-800: #d94968;
+  --brand-pink-900: #b33756;
 }
 
 @theme inline {
@@ -10,6 +44,55 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Brand Color Palette */
+  --color-brand-teal-50: var(--brand-teal-50);
+  --color-brand-teal-100: var(--brand-teal-100);
+  --color-brand-teal-200: var(--brand-teal-200);
+  --color-brand-teal-300: var(--brand-teal-300);
+  --color-brand-teal-400: var(--brand-teal-400);
+  --color-brand-teal-500: var(--brand-teal-500);
+  --color-brand-teal-600: var(--brand-teal-600);
+  --color-brand-teal-700: var(--brand-teal-700);
+  --color-brand-teal-800: var(--brand-teal-800);
+  --color-brand-teal-900: var(--brand-teal-900);
+
+  --color-brand-mint-50: var(--brand-mint-50);
+  --color-brand-mint-100: var(--brand-mint-100);
+  --color-brand-mint-200: var(--brand-mint-200);
+  --color-brand-mint-300: var(--brand-mint-300);
+  --color-brand-mint-400: var(--brand-mint-400);
+  --color-brand-mint-500: var(--brand-mint-500);
+  --color-brand-mint-600: var(--brand-mint-600);
+  --color-brand-mint-700: var(--brand-mint-700);
+  --color-brand-mint-800: var(--brand-mint-800);
+  --color-brand-mint-900: var(--brand-mint-900);
+
+  --color-brand-pink-50: var(--brand-pink-50);
+  --color-brand-pink-100: var(--brand-pink-100);
+  --color-brand-pink-200: var(--brand-pink-200);
+  --color-brand-pink-300: var(--brand-pink-300);
+  --color-brand-pink-400: var(--brand-pink-400);
+  --color-brand-pink-500: var(--brand-pink-500);
+  --color-brand-pink-600: var(--brand-pink-600);
+  --color-brand-pink-700: var(--brand-pink-700);
+  --color-brand-pink-800: var(--brand-pink-800);
+  --color-brand-pink-900: var(--brand-pink-900);
+
+  /* Semantic color mappings */
+  --color-primary-50: var(--brand-teal-50);
+  --color-primary-100: var(--brand-teal-100);
+  --color-primary-200: var(--brand-teal-200);
+  --color-primary-300: var(--brand-teal-300);
+  --color-primary-400: var(--brand-teal-400);
+  --color-primary-500: var(--brand-teal-800);
+  --color-primary-600: var(--brand-teal-900);
+  --color-primary-700: var(--brand-teal-900);
+  --color-primary-800: var(--brand-teal-900);
+  --color-primary-900: var(--brand-teal-900);
+
+  /* Page background - soft mint from logo */
+  --color-page-bg: var(--brand-teal-50);
 }
 
 @media (prefers-color-scheme: dark) {

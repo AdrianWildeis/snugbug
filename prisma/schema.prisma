@@ -1,0 +1,168 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String    @id @default(cuid())
+  name              String?
+  email             String    @unique
+  emailVerified     DateTime?
+  image             String?
+  password          String?
+  stripeConnectId   String?   @unique
+  stripeOnboarded   Boolean   @default(false)
+  phone             String?
+  location          String?
+  createdAt         DateTime  @default(now())
+
+  listings              Listing[]
+  purchases             Transaction[] @relation("Buyer")
+  sales                 Transaction[] @relation("Seller")
+  sentMessages          Message[] @relation("Sender")
+  receivedMessages      Message[] @relation("Receiver")
+  conversationsStarted  Conversation[] @relation("ConversationStarter")
+  conversationsReceived Conversation[] @relation("ConversationReceiver")
+  reviewsGiven          Review[] @relation("Reviewer")
+  reviewsReceived       Review[] @relation("Reviewed")
+  accounts              Account[]
+  sessions              Session[]
+}
+
+model Listing {
+  id          String   @id @default(cuid())
+  title       String
+  description String   @db.Text
+  price       Decimal  @db.Decimal(10, 2)
+  category    String
+  condition   String
+  location    String
+  ageRange    String?
+  brand       String?
+  size        String?
+  images      String[] // Array of image URLs
+  status      String   @default("active") // active, sold, deleted
+  views       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+
+  transactions  Transaction[]
+  conversations Conversation[]
+}
+
+model Transaction {
+  id                  String   @id @default(cuid())
+  amount              Decimal  @db.Decimal(10, 2)
+  commission          Decimal  @db.Decimal(10, 2)
+  sellerAmount        Decimal  @db.Decimal(10, 2)
+  stripePaymentIntent String   @unique
+  stripeTransferId    String?
+  status              String   // pending, completed, refunded
+  releaseAt           DateTime // Auto-release date (7 days)
+  releasedAt          DateTime?
+  createdAt           DateTime @default(now())
+
+  listingId   String
+  listing     Listing  @relation(fields: [listingId], references: [id])
+
+  buyerId     String
+  buyer       User     @relation("Buyer", fields: [buyerId], references: [id])
+
+  sellerId    String
+  seller      User     @relation("Seller", fields: [sellerId], references: [id])
+
+  review      Review?
+}
+
+model Conversation {
+  id             String   @id @default(cuid())
+  lastMessageAt  DateTime @default(now())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  listingId      String
+  listing        Listing  @relation(fields: [listingId], references: [id])
+
+  buyerId        String
+  buyer          User     @relation("ConversationStarter", fields: [buyerId], references: [id])
+
+  sellerId       String
+  seller         User     @relation("ConversationReceiver", fields: [sellerId], references: [id])
+
+  messages       Message[]
+
+  @@unique([listingId, buyerId, sellerId])
+  @@index([buyerId])
+  @@index([sellerId])
+}
+
+model Message {
+  id             String   @id @default(cuid())
+  content        String   @db.Text
+  read           Boolean  @default(false)
+  createdAt      DateTime @default(now())
+
+  senderId       String
+  sender         User     @relation("Sender", fields: [senderId], references: [id])
+
+  receiverId     String
+  receiver       User     @relation("Receiver", fields: [receiverId], references: [id])
+
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId])
+  @@index([senderId])
+  @@index([receiverId])
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int      // 1-5 stars
+  comment   String?  @db.Text
+  createdAt DateTime @default(now())
+
+  transactionId String @unique
+  transaction   Transaction @relation(fields: [transactionId], references: [id])
+
+  reviewerId String
+  reviewer   User   @relation("Reviewer", fields: [reviewerId], references: [id])
+
+  reviewedId String
+  reviewed   User   @relation("Reviewed", fields: [reviewedId], references: [id])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
