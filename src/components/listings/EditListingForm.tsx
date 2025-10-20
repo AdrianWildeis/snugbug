@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { listingSchema, type ListingFormData } from '@/lib/validations/listing';
 import { CATEGORIES, CONDITIONS, SWISS_CITIES, AGE_RANGES } from '@/lib/constants';
-import type { Listing } from '@prisma/client';
+import type { Listing } from '@/generated/prisma';
 
 interface EditListingFormProps {
   listing: Listing;
