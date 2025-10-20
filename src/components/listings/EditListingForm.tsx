@@ -10,7 +10,7 @@ import { CATEGORIES, CONDITIONS, SWISS_CITIES, AGE_RANGES } from '@/lib/constant
 import type { Listing } from '@/generated/prisma';
 
 interface EditListingFormProps {
-  listing: Listing;
+  listing: Omit<Listing, 'price'> & { price: number };
 }
 
 export function EditListingForm({ listing }: EditListingFormProps) {
@@ -34,7 +34,7 @@ export function EditListingForm({ listing }: EditListingFormProps) {
     defaultValues: {
       title: listing.title,
       description: listing.description,
-      price: Number(listing.price),
+      price: listing.price,
       category: listing.category,
       condition: listing.condition,
       location: listing.location,
