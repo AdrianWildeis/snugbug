@@ -7,7 +7,7 @@ async function getListings() {
   try {
     const listings = await prisma.listing.findMany({
       include: {
-        seller: {
+        user: {
           select: {
             name: true,
             email: true,
@@ -87,7 +87,7 @@ export default async function Home() {
               >
                 <div className="aspect-w-16 aspect-h-9">
                   <img
-                    src={listing.imageUrl || "https://placehold.co/400x300?text=No+Image"}
+                    src={listing.images[0] || "https://placehold.co/400x300?text=No+Image"}
                     alt={listing.title}
                     className="w-full h-48 object-cover"
                   />
@@ -98,7 +98,7 @@ export default async function Home() {
                       {listing.title}
                     </h3>
                     <span className="text-lg font-bold text-blue-600">
-                      ${(listing.price / 100).toFixed(2)}
+                      CHF {Number(listing.price).toFixed(2)}
                     </span>
                   </div>
                   <p className="text-sm text-gray-600 mb-2 line-clamp-2">
@@ -108,7 +108,7 @@ export default async function Home() {
                     <span className="bg-gray-100 px-2 py-1 rounded-full text-xs">
                       {listing.category}
                     </span>
-                    <span>by {listing.seller.name || listing.seller.email}</span>
+                    <span>by {listing.user.name || listing.user.email}</span>
                   </div>
                 </div>
               </div>
