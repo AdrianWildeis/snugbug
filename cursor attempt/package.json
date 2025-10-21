@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@types/multer": "^2.0.0",
+    "cloudinary": "^2.7.0",
+    "multer": "^2.0.1",
+    "nodemailer": "^7.0.5"
+  }
+}

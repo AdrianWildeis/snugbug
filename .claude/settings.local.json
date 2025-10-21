@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(test -f .env)",
+      "Bash(test -f \"./cursor attempt/snugbug-app/.env\")",
+      "Bash(npm run db:generate)",
+      "Bash(npm run db:push)",
+      "WebSearch"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
