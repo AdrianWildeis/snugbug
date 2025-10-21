@@ -50,7 +50,7 @@ async function main() {
       location: 'Geneva',
       ageRange: '0-6 months',
       brand: 'Bugaboo',
-      images: ['https://images.unsplash.com/photo-1544534769-d83bb7a5d48c?w=400&h=400&fit=crop'],
+      images: ['https://images.unsplash.com/photo-1588772604686-bff7733db001?w=400&h=400&fit=crop'],
       userId: user1.id,
     },
     {
@@ -61,7 +61,7 @@ async function main() {
       condition: 'like-new',
       location: 'Geneva',
       brand: 'IKEA',
-      images: ['https://images.unsplash.com/photo-1522771930-78848d9293e8?w=400&h=400&fit=crop'],
+      images: ['https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=400&h=400&fit=crop'],
       userId: user1.id,
     },
     {
@@ -73,7 +73,7 @@ async function main() {
       location: 'Lausanne',
       ageRange: '6-12 months',
       brand: 'Stokke',
-      images: ['https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=400&fit=crop'],
+      images: ['https://images.unsplash.com/photo-1606922063421-76f65b4b4403?w=400&h=400&fit=crop'],
       userId: user2.id,
     },
     {
@@ -84,7 +84,7 @@ async function main() {
       condition: 'good',
       location: 'Lausanne',
       brand: 'Motorola',
-      images: ['https://images.unsplash.com/photo-1551836022-8b2858c9c69b?w=400&h=400&fit=crop'],
+      images: ['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop'],
       userId: user2.id,
     },
     {
@@ -96,7 +96,7 @@ async function main() {
       location: 'Geneva',
       ageRange: '0-6 months',
       brand: 'Maxi-Cosi',
-      images: ['https://images.unsplash.com/photo-1589894404025-c4128adcbf50?w=400&h=400&fit=crop'],
+      images: ['https://images.unsplash.com/photo-1617806118233-05a0e1d72c78?w=400&h=400&fit=crop'],
       userId: user1.id,
     },
     {
@@ -108,7 +108,7 @@ async function main() {
       location: 'Nyon',
       ageRange: '0-6 months',
       size: '0-3 months',
-      images: ['https://images.unsplash.com/photo-1519689373023-dd07c7988603?w=400&h=400&fit=crop'],
+      images: ['https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=400&h=400&fit=crop'],
       userId: user3.id,
     },
     {
@@ -120,7 +120,7 @@ async function main() {
       location: 'Lausanne',
       ageRange: '1-2 years',
       brand: 'Hape',
-      images: ['https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=400&h=400&fit=crop'],
+      images: ['https://images.unsplash.com/photo-1587912781053-c18ab03b2f60?w=400&h=400&fit=crop'],
       userId: user2.id,
     },
     {
@@ -131,7 +131,7 @@ async function main() {
       condition: 'good',
       location: 'Geneva',
       ageRange: '0-6 months',
-      images: ['https://images.unsplash.com/photo-1584690433462-c019ce1ae774?w=400&h=400&fit=crop'],
+      images: ['https://images.unsplash.com/photo-1600857544200-242c985c0f55?w=400&h=400&fit=crop'],
       userId: user1.id,
     },
     {
@@ -142,7 +142,7 @@ async function main() {
       condition: 'like-new',
       location: 'Nyon',
       brand: 'Medela',
-      images: ['https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=400&h=400&fit=crop'],
+      images: ['https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop'],
       userId: user3.id,
     },
     {
@@ -153,7 +153,7 @@ async function main() {
       condition: 'good',
       location: 'Lausanne',
       ageRange: '0-6 months',
-      images: ['https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=400&fit=crop'],
+      images: ['https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=400&fit=crop'],
       userId: user2.id,
     },
   ];
