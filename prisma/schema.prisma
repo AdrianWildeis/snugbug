@@ -19,6 +19,7 @@ model User {
   stripeOnboarded   Boolean   @default(false)
   phone             String?
   location          String?
+  isAdmin           Boolean   @default(false)
   createdAt         DateTime  @default(now())
 
   listings              Listing[]
@@ -48,6 +49,8 @@ model Listing {
   images      String[] // Array of image URLs
   status      String   @default("active") // active, sold, deleted
   views       Int      @default(0)
+  adminNumber String?  // Admin-only field
+  adminPlace  String?  // Admin-only field
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

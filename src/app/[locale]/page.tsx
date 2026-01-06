@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { auth } from "@/auth";
 import Link from "next/link";
 import { getTranslations } from 'next-intl/server';
 import { SearchAndFilters } from '@/components/search/SearchAndFilters';
@@ -11,6 +12,8 @@ interface SearchParams {
   location?: string;
   minPrice?: string;
   maxPrice?: string;
+  adminNumber?: string;
+  adminPlace?: string;
 }
 
 async function getListings(searchParams: SearchParams) {
@@ -19,12 +22,34 @@ async function getListings(searchParams: SearchParams) {
       status: 'active',
     };
 
-    // Search by title or description
+    // Search by title or description (and admin fields if provided)
     if (searchParams.search) {
-      where.OR = [
+      const searchConditions: any[] = [
         { title: { contains: searchParams.search, mode: 'insensitive' } },
         { description: { contains: searchParams.search, mode: 'insensitive' } },
       ];
+
+      // Admin-only: search in adminNumber and adminPlace
+      if (searchParams.adminNumber || searchParams.adminPlace) {
+        if (searchParams.adminNumber) {
+          searchConditions.push({ adminNumber: { contains: searchParams.search, mode: 'insensitive' } });
+        }
+        if (searchParams.adminPlace) {
+          searchConditions.push({ adminPlace: { contains: searchParams.search, mode: 'insensitive' } });
+        }
+      }
+
+      where.OR = searchConditions;
+    }
+
+    // Admin-only: Filter by adminNumber
+    if (searchParams.adminNumber) {
+      where.adminNumber = { contains: searchParams.adminNumber, mode: 'insensitive' };
+    }
+
+    // Admin-only: Filter by adminPlace
+    if (searchParams.adminPlace) {
+      where.adminPlace = { contains: searchParams.adminPlace, mode: 'insensitive' };
     }
 
     // Filter by category
@@ -86,10 +111,11 @@ interface HomeProps {
 
 export default async function Home({ searchParams }: HomeProps) {
   const params = await searchParams;
+  const session = await auth();
   const listings = await getListings(params);
   const t = await getTranslations('common');
 
-  const hasFilters = params.search || params.category || params.condition || params.location || params.minPrice || params.maxPrice;
+  const hasFilters = params.search || params.category || params.condition || params.location || params.minPrice || params.maxPrice || params.adminNumber || params.adminPlace;
 
   return (
     <div className="min-h-screen bg-brand-teal-50">
@@ -108,7 +134,7 @@ export default async function Home({ searchParams }: HomeProps) {
         </div>
 
         {/* Search and Filters */}
-        <SearchAndFilters />
+        <SearchAndFilters isAdmin={session?.user?.isAdmin || false} />
 
         {listings.length === 0 ? (
           <div className="text-center py-12">

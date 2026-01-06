@@ -8,6 +8,7 @@ declare module 'next-auth' {
       stripeOnboarded?: boolean;
       location?: string | null;
       phone?: string | null;
+      isAdmin?: boolean;
     } & DefaultSession['user'];
   }
 }

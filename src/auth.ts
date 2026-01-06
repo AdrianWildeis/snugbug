@@ -67,6 +67,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             stripeOnboarded: true,
             location: true,
             phone: true,
+            isAdmin: true,
           },
         });
 
@@ -75,6 +76,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           session.user.stripeOnboarded = dbUser.stripeOnboarded;
           session.user.location = dbUser.location;
           session.user.phone = dbUser.phone;
+          session.user.isAdmin = dbUser.isAdmin;
         }
       }
       return session;

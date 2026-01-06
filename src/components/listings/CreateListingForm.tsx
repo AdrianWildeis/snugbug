@@ -8,7 +8,11 @@ import { useTranslations } from 'next-intl';
 import { listingSchema, type ListingFormData } from '@/lib/validations/listing';
 import { CATEGORIES, CONDITIONS, SWISS_CITIES, AGE_RANGES } from '@/lib/constants';
 
-export function CreateListingForm() {
+interface CreateListingFormProps {
+  isAdmin?: boolean;
+}
+
+export function CreateListingForm({ isAdmin = false }: CreateListingFormProps) {
   const [images, setImages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -231,82 +235,134 @@ export function CreateListingForm() {
         />
       </div>
 
-      {/* Image URLs (Development Mode) */}
+      {/* Admin-Only Fields */}
+      {isAdmin && (
+        <div className="space-y-6 p-6 bg-amber-50 border-2 border-amber-300 rounded-lg">
+          <div className="flex items-center gap-2 mb-4">
+            <svg className="w-5 h-5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+            </svg>
+            <span className="text-sm font-semibold text-amber-900 uppercase tracking-wide">
+              Admin-Only Fields
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Admin Number */}
+            <div>
+              <label htmlFor="adminNumber" className="block text-sm font-medium text-amber-900 mb-2">
+                Number
+              </label>
+              <input
+                id="adminNumber"
+                type="text"
+                {...register('adminNumber')}
+                className="w-full px-4 py-3 border-2 border-amber-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                placeholder="Reference number..."
+              />
+            </div>
+
+            {/* Admin Place */}
+            <div>
+              <label htmlFor="adminPlace" className="block text-sm font-medium text-amber-900 mb-2">
+                Place
+              </label>
+              <input
+                id="adminPlace"
+                type="text"
+                {...register('adminPlace')}
+                className="w-full px-4 py-3 border-2 border-amber-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                placeholder="Storage location..."
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Image Upload */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
           {t('images')} * (Max 8)
         </label>
         <p className="text-sm text-gray-500 mb-3">
-          For development: Enter image URLs from Unsplash or other sources
+          Take photos with your camera or upload from your device
         </p>
 
-        {/* Image URL Input */}
+        {/* File Input with Camera Support */}
         {images.length < 8 && (
           <div className="mb-4">
-            <div className="flex gap-2">
-              <input
-                type="url"
-                placeholder="https://images.unsplash.com/photo-..."
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const input = e.currentTarget;
-                    const url = input.value.trim();
-                    if (url && images.length < 8) {
-                      try {
-                        new URL(url); // Validate URL
-                        const newImages = [...images, url];
-                        setImages(newImages);
-                        setValue('images', newImages);
-                        input.value = '';
-                        setError(null);
-                      } catch {
-                        setError('Please enter a valid URL');
-                      }
-                    }
+            <label
+              htmlFor="imageUpload"
+              className="flex items-center justify-center w-full px-4 py-8 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-primary-500 transition-colors bg-gray-50"
+            >
+              <div className="text-center">
+                <svg
+                  className="mx-auto h-12 w-12 text-gray-400"
+                  stroke="currentColor"
+                  fill="none"
+                  viewBox="0 0 48 48"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <p className="mt-2 text-sm font-medium text-gray-700">
+                  📷 Take Photo or Upload Image
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  PNG, JPG, HEIC up to 10MB
+                </p>
+              </div>
+            </label>
+            <input
+              id="imageUpload"
+              type="file"
+              accept="image/*"
+              capture="environment"
+              className="hidden"
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                if (file && images.length < 8) {
+                  // Validate file size (10MB)
+                  if (file.size > 10 * 1024 * 1024) {
+                    setError('Image must be less than 10MB');
+                    return;
                   }
-                }}
-                id="imageUrlInput"
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  const input = document.getElementById('imageUrlInput') as HTMLInputElement;
-                  const url = input.value.trim();
-                  if (url && images.length < 8) {
-                    try {
-                      new URL(url); // Validate URL
-                      const newImages = [...images, url];
-                      setImages(newImages);
-                      setValue('images', newImages);
-                      input.value = '';
-                      setError(null);
-                    } catch {
-                      setError('Please enter a valid URL');
-                    }
-                  }
-                }}
-                className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
-              >
-                Add
-              </button>
-            </div>
+
+                  // Convert to base64 for preview and storage
+                  const reader = new FileReader();
+                  reader.onloadend = () => {
+                    const base64String = reader.result as string;
+                    const newImages = [...images, base64String];
+                    setImages(newImages);
+                    setValue('images', newImages);
+                    setError(null);
+                  };
+                  reader.onerror = () => {
+                    setError('Failed to read image file');
+                  };
+                  reader.readAsDataURL(file);
+                }
+                // Reset input to allow selecting the same file again
+                e.target.value = '';
+              }}
+            />
           </div>
         )}
 
         {/* Uploaded Images Preview */}
         {images.length > 0 && (
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {images.map((url, index) => (
               <div key={index} className="relative group">
                 <img
                   src={url}
                   alt={`Upload ${index + 1}`}
-                  className="w-full h-32 object-cover rounded-lg"
-                  onError={(e) => {
-                    e.currentTarget.src = 'https://via.placeholder.com/300x200?text=Invalid+Image';
-                  }}
+                  className="w-full h-32 object-cover rounded-lg border-2 border-gray-200"
                 />
                 <button
                   type="button"
@@ -315,10 +371,14 @@ export function CreateListingForm() {
                     setImages(newImages);
                     setValue('images', newImages);
                   }}
-                  className="absolute top-2 right-2 bg-red-600 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute top-2 right-2 bg-red-600 text-white w-7 h-7 flex items-center justify-center rounded-full opacity-90 hover:opacity-100 transition-opacity shadow-lg"
+                  aria-label="Remove image"
                 >
                   ×
                 </button>
+                <div className="absolute bottom-2 left-2 bg-black bg-opacity-60 text-white text-xs px-2 py-1 rounded">
+                  {index + 1} / {images.length}
+                </div>
               </div>
             ))}
           </div>

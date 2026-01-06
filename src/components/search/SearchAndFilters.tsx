@@ -5,7 +5,11 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { CATEGORIES, CONDITIONS, SWISS_CITIES } from '@/lib/constants';
 
-export function SearchAndFilters() {
+interface SearchAndFiltersProps {
+  isAdmin?: boolean;
+}
+
+export function SearchAndFilters({ isAdmin = false }: SearchAndFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const t = useTranslations('common');
@@ -19,6 +23,8 @@ export function SearchAndFilters() {
   const [location, setLocation] = useState(searchParams.get('location') || '');
   const [minPrice, setMinPrice] = useState(searchParams.get('minPrice') || '');
   const [maxPrice, setMaxPrice] = useState(searchParams.get('maxPrice') || '');
+  const [adminNumber, setAdminNumber] = useState(searchParams.get('adminNumber') || '');
+  const [adminPlace, setAdminPlace] = useState(searchParams.get('adminPlace') || '');
   const [showFilters, setShowFilters] = useState(false);
 
   const applyFilters = () => {
@@ -30,6 +36,8 @@ export function SearchAndFilters() {
     if (location) params.set('location', location);
     if (minPrice) params.set('minPrice', minPrice);
     if (maxPrice) params.set('maxPrice', maxPrice);
+    if (isAdmin && adminNumber) params.set('adminNumber', adminNumber);
+    if (isAdmin && adminPlace) params.set('adminPlace', adminPlace);
 
     router.push(`/?${params.toString()}`);
   };
@@ -41,10 +49,12 @@ export function SearchAndFilters() {
     setLocation('');
     setMinPrice('');
     setMaxPrice('');
+    setAdminNumber('');
+    setAdminPlace('');
     router.push('/');
   };
 
-  const hasActiveFilters = category || condition || location || minPrice || maxPrice;
+  const hasActiveFilters = category || condition || location || minPrice || maxPrice || (isAdmin && (adminNumber || adminPlace));
 
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
@@ -193,6 +203,46 @@ export function SearchAndFilters() {
                 />
               </div>
             </div>
+
+            {/* Admin-Only Fields */}
+            {isAdmin && (
+              <div className="md:col-span-2 lg:col-span-3 p-4 bg-amber-50 border-2 border-amber-300 rounded-lg">
+                <div className="flex items-center gap-2 mb-3">
+                  <svg className="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                  </svg>
+                  <span className="text-xs font-semibold text-amber-900 uppercase tracking-wide">
+                    Admin Search
+                  </span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-amber-900 mb-2">
+                      Number
+                    </label>
+                    <input
+                      type="text"
+                      value={adminNumber}
+                      onChange={(e) => setAdminNumber(e.target.value)}
+                      placeholder="Search by number..."
+                      className="w-full px-4 py-2 border-2 border-amber-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-amber-900 mb-2">
+                      Place
+                    </label>
+                    <input
+                      type="text"
+                      value={adminPlace}
+                      onChange={(e) => setAdminPlace(e.target.value)}
+                      placeholder="Search by place..."
+                      className="w-full px-4 py-2 border-2 border-amber-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Action Buttons */}

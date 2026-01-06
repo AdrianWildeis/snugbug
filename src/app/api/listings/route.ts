@@ -31,6 +31,8 @@ export async function POST(request: NextRequest) {
         ageRange: validatedData.ageRange || null,
         brand: validatedData.brand || null,
         size: validatedData.size || null,
+        adminNumber: validatedData.adminNumber || null,
+        adminPlace: validatedData.adminPlace || null,
         images: validatedData.images,
         userId: session.user.id,
         status: 'active',

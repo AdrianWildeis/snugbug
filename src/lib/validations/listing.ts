@@ -29,6 +29,8 @@ export const listingSchema = z.object({
     .nullable(),
   brand: z.string().max(50, 'Brand must be less than 50 characters').optional().nullable(),
   size: z.string().max(30, 'Size must be less than 30 characters').optional().nullable(),
+  adminNumber: z.string().max(50, 'Number must be less than 50 characters').optional().nullable(),
+  adminPlace: z.string().max(100, 'Place must be less than 100 characters').optional().nullable(),
   images: z
     .array(z.string().url('Invalid image URL'))
     .min(1, 'Please upload at least 1 image')

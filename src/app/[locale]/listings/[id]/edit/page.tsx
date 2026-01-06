@@ -56,7 +56,7 @@ export default async function EditListingPage({ params }: EditListingPageProps) 
 
         {/* Form Card */}
         <div className="bg-white rounded-lg shadow-sm p-6 md:p-8">
-          <EditListingForm listing={listingWithNumber} />
+          <EditListingForm listing={listingWithNumber} isAdmin={session.user.isAdmin || false} />
         </div>
       </div>
     </div>

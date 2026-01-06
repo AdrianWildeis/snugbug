@@ -164,6 +164,34 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
                 )}
               </div>
 
+              {/* Admin-Only Fields */}
+              {session?.user?.isAdmin && (listingWithNumber.adminNumber || listingWithNumber.adminPlace) && (
+                <div className="p-4 bg-amber-50 border-2 border-amber-300 rounded-lg space-y-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <svg className="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-xs font-semibold text-amber-900 uppercase tracking-wide">
+                      Admin Info
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    {listingWithNumber.adminNumber && (
+                      <div>
+                        <p className="text-xs text-amber-700 font-medium">Number</p>
+                        <p className="font-semibold text-amber-900">{listingWithNumber.adminNumber}</p>
+                      </div>
+                    )}
+                    {listingWithNumber.adminPlace && (
+                      <div>
+                        <p className="text-xs text-amber-700 font-medium">Place</p>
+                        <p className="font-semibold text-amber-900">{listingWithNumber.adminPlace}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
               <div>
                 <h2 className="text-xl font-semibold text-gray-900 mb-2">
                   {t('description')}
