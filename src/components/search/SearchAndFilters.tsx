@@ -71,7 +71,7 @@ export function SearchAndFilters({ isAdmin = false }: SearchAndFiltersProps) {
               }
             }}
             placeholder={t('search')}
-            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
           <svg
             className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
@@ -131,7 +131,7 @@ export function SearchAndFilters({ isAdmin = false }: SearchAndFiltersProps) {
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               >
                 <option value="">All Categories</option>
                 {CATEGORIES.map((cat) => (
@@ -150,7 +150,7 @@ export function SearchAndFilters({ isAdmin = false }: SearchAndFiltersProps) {
               <select
                 value={condition}
                 onChange={(e) => setCondition(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               >
                 <option value="">All Conditions</option>
                 {CONDITIONS.map((cond) => (
@@ -169,7 +169,7 @@ export function SearchAndFilters({ isAdmin = false }: SearchAndFiltersProps) {
               <select
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               >
                 <option value="">All Locations</option>
                 {SWISS_CITIES.map((city) => (
@@ -191,7 +191,7 @@ export function SearchAndFilters({ isAdmin = false }: SearchAndFiltersProps) {
                   value={minPrice}
                   onChange={(e) => setMinPrice(e.target.value)}
                   placeholder="Min"
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 />
                 <span className="flex items-center text-gray-500">to</span>
                 <input
@@ -199,7 +199,7 @@ export function SearchAndFilters({ isAdmin = false }: SearchAndFiltersProps) {
                   value={maxPrice}
                   onChange={(e) => setMaxPrice(e.target.value)}
                   placeholder="Max"
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 />
               </div>
             </div>
@@ -225,7 +225,7 @@ export function SearchAndFilters({ isAdmin = false }: SearchAndFiltersProps) {
                       value={adminNumber}
                       onChange={(e) => setAdminNumber(e.target.value)}
                       placeholder="Search by number..."
-                      className="w-full px-4 py-2 border-2 border-amber-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                      className="w-full px-4 py-2 border-2 border-amber-300 bg-white rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                     />
                   </div>
                   <div>
@@ -237,7 +237,7 @@ export function SearchAndFilters({ isAdmin = false }: SearchAndFiltersProps) {
                       value={adminPlace}
                       onChange={(e) => setAdminPlace(e.target.value)}
                       placeholder="Search by place..."
-                      className="w-full px-4 py-2 border-2 border-amber-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                      className="w-full px-4 py-2 border-2 border-amber-300 bg-white rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                     />
                   </div>
                 </div>

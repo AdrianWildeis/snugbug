@@ -89,7 +89,7 @@ export function EditListingForm({ listing, isAdmin = false }: EditListingFormPro
           id="title"
           type="text"
           {...register('title')}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
         />
         {errors.title && (
           <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>
@@ -105,7 +105,7 @@ export function EditListingForm({ listing, isAdmin = false }: EditListingFormPro
           id="description"
           {...register('description')}
           rows={6}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
         />
         {errors.description && (
           <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>
@@ -124,7 +124,7 @@ export function EditListingForm({ listing, isAdmin = false }: EditListingFormPro
             type="number"
             step="0.01"
             {...register('price', { valueAsNumber: true })}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
           {errors.price && (
             <p className="mt-1 text-sm text-red-600">{errors.price.message}</p>
@@ -139,7 +139,7 @@ export function EditListingForm({ listing, isAdmin = false }: EditListingFormPro
           <select
             id="category"
             {...register('category')}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             <option value="">{tCommon('select')}</option>
             {CATEGORIES.map((cat) => (
@@ -161,7 +161,7 @@ export function EditListingForm({ listing, isAdmin = false }: EditListingFormPro
           <select
             id="condition"
             {...register('condition')}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             <option value="">{tCommon('select')}</option>
             {CONDITIONS.map((cond) => (
@@ -186,7 +186,7 @@ export function EditListingForm({ listing, isAdmin = false }: EditListingFormPro
           <select
             id="location"
             {...register('location')}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             <option value="">{tCommon('select')}</option>
             {SWISS_CITIES.map((city) => (
@@ -208,7 +208,7 @@ export function EditListingForm({ listing, isAdmin = false }: EditListingFormPro
           <select
             id="ageRange"
             {...register('ageRange')}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             <option value="">{tCommon('select')}</option>
             {AGE_RANGES.map((range) => (
@@ -228,7 +228,7 @@ export function EditListingForm({ listing, isAdmin = false }: EditListingFormPro
             id="brand"
             type="text"
             {...register('brand')}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
         </div>
       </div>
@@ -242,7 +242,7 @@ export function EditListingForm({ listing, isAdmin = false }: EditListingFormPro
           id="size"
           type="text"
           {...register('size')}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
         />
       </div>
 
@@ -268,7 +268,7 @@ export function EditListingForm({ listing, isAdmin = false }: EditListingFormPro
                 id="adminNumber"
                 type="text"
                 {...register('adminNumber')}
-                className="w-full px-4 py-3 border-2 border-amber-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                className="w-full px-4 py-3 border-2 border-amber-300 bg-white rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                 placeholder="Reference number..."
               />
             </div>
@@ -282,7 +282,7 @@ export function EditListingForm({ listing, isAdmin = false }: EditListingFormPro
                 id="adminPlace"
                 type="text"
                 {...register('adminPlace')}
-                className="w-full px-4 py-3 border-2 border-amber-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                className="w-full px-4 py-3 border-2 border-amber-300 bg-white rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                 placeholder="Storage location..."
               />
             </div>

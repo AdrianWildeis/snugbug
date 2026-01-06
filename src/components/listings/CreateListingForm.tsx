@@ -73,7 +73,7 @@ export function CreateListingForm({ isAdmin = false }: CreateListingFormProps) {
           id="title"
           type="text"
           {...register('title')}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           placeholder="Premium Baby Stroller - Lightweight & Foldable"
         />
         {errors.title && (
@@ -90,7 +90,7 @@ export function CreateListingForm({ isAdmin = false }: CreateListingFormProps) {
           id="description"
           {...register('description')}
           rows={6}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           placeholder="Describe your item in detail... (min 20 characters)"
         />
         {errors.description && (
@@ -110,7 +110,7 @@ export function CreateListingForm({ isAdmin = false }: CreateListingFormProps) {
             type="number"
             step="0.01"
             {...register('price', { valueAsNumber: true })}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             placeholder="120.00"
           />
           {errors.price && (
@@ -126,7 +126,7 @@ export function CreateListingForm({ isAdmin = false }: CreateListingFormProps) {
           <select
             id="category"
             {...register('category')}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             <option value="">{tCommon('select')}</option>
             {CATEGORIES.map((cat) => (
@@ -148,7 +148,7 @@ export function CreateListingForm({ isAdmin = false }: CreateListingFormProps) {
           <select
             id="condition"
             {...register('condition')}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             <option value="">{tCommon('select')}</option>
             {CONDITIONS.map((cond) => (
@@ -173,7 +173,7 @@ export function CreateListingForm({ isAdmin = false }: CreateListingFormProps) {
           <select
             id="location"
             {...register('location')}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             <option value="">{tCommon('select')}</option>
             {SWISS_CITIES.map((city) => (
@@ -195,7 +195,7 @@ export function CreateListingForm({ isAdmin = false }: CreateListingFormProps) {
           <select
             id="ageRange"
             {...register('ageRange')}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             <option value="">{tCommon('select')}</option>
             {AGE_RANGES.map((range) => (
@@ -215,7 +215,7 @@ export function CreateListingForm({ isAdmin = false }: CreateListingFormProps) {
             id="brand"
             type="text"
             {...register('brand')}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             placeholder="Bugaboo"
           />
         </div>
@@ -230,7 +230,7 @@ export function CreateListingForm({ isAdmin = false }: CreateListingFormProps) {
           id="size"
           type="text"
           {...register('size')}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           placeholder="0-3 months, 74cm, etc."
         />
       </div>
@@ -257,7 +257,7 @@ export function CreateListingForm({ isAdmin = false }: CreateListingFormProps) {
                 id="adminNumber"
                 type="text"
                 {...register('adminNumber')}
-                className="w-full px-4 py-3 border-2 border-amber-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                className="w-full px-4 py-3 border-2 border-amber-300 bg-white rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                 placeholder="Reference number..."
               />
             </div>
@@ -271,7 +271,7 @@ export function CreateListingForm({ isAdmin = false }: CreateListingFormProps) {
                 id="adminPlace"
                 type="text"
                 {...register('adminPlace')}
-                className="w-full px-4 py-3 border-2 border-amber-300 bg-white rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+                className="w-full px-4 py-3 border-2 border-amber-300 bg-white rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                 placeholder="Storage location..."
               />
             </div>

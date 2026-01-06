@@ -76,7 +76,7 @@ export function EditProfileForm({ initialData, onSuccess }: EditProfileFormProps
           id="name"
           type="text"
           {...register('name')}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           placeholder="John Doe"
         />
         {errors.name && (
@@ -93,7 +93,7 @@ export function EditProfileForm({ initialData, onSuccess }: EditProfileFormProps
           id="phone"
           type="tel"
           {...register('phone')}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           placeholder="+41 79 123 45 67"
         />
         {errors.phone && (
@@ -109,7 +109,7 @@ export function EditProfileForm({ initialData, onSuccess }: EditProfileFormProps
         <select
           id="location"
           {...register('location')}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
         >
           <option value="">{t('common.select')}</option>
           {SWISS_CITIES.map((city) => (
@@ -132,7 +132,7 @@ export function EditProfileForm({ initialData, onSuccess }: EditProfileFormProps
           id="image"
           type="url"
           {...register('image')}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           placeholder="https://example.com/avatar.jpg"
         />
         {errors.image && (
