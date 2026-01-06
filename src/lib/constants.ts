@@ -28,6 +28,7 @@ export const SWISS_CITIES = [
   'Vevey',
   'Nyon',
   'Morges',
+  'Rolle',
   'Yverdon-les-Bains',
   'Other',
 ] as const;

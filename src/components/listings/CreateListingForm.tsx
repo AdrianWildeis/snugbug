@@ -91,7 +91,7 @@ export function CreateListingForm({ isAdmin = false }: CreateListingFormProps) {
           {...register('description')}
           rows={6}
           className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-          placeholder="Describe your item in detail... (min 20 characters)"
+          placeholder="Describe your item in detail..."
         />
         {errors.description && (
           <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>

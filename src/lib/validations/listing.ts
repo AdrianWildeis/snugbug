@@ -8,7 +8,7 @@ export const listingSchema = z.object({
     .max(100, 'Title must be less than 100 characters'),
   description: z
     .string()
-    .min(20, 'Description must be at least 20 characters')
+    .min(1, 'Description is required')
     .max(2000, 'Description must be less than 2000 characters'),
   price: z
     .number()
