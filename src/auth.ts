@@ -17,11 +17,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       clientId: process.env.AUTH_FACEBOOK_ID,
       clientSecret: process.env.AUTH_FACEBOOK_SECRET!,
     })] : []),
-    // Development-only: Email-based login (no password needed)
-    ...(process.env.NODE_ENV === 'development' ? [Credentials({
+    // Email-based login (no password needed)
+    Credentials({
       name: 'Email',
       credentials: {
-        email: { label: 'Email', type: 'email', placeholder: 'alice@example.com' },
+        email: { label: 'Email', type: 'email', placeholder: 'user@example.com' },
       },
       async authorize(credentials) {
         if (!credentials?.email) {
@@ -43,7 +43,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         return null;
       },
-    })] : []),
+    }),
   ],
   session: {
     strategy: 'jwt', // Use JWT for Credentials provider
