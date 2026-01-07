@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import { ListingActions } from '@/components/listings/ListingActions';
+import { ImageGallery } from '@/components/listings/ImageGallery';
 
 interface ListingDetailPageProps {
   params: Promise<{
@@ -75,43 +76,11 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
           <div className="lg:col-span-2 space-y-6">
             {/* Image Gallery */}
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-              {listingWithNumber.images.length > 0 ? (
-                <div className="grid grid-cols-1 gap-4 p-4">
-                  {/* Main Image */}
-                  <div className="relative w-full h-96 bg-gray-100 rounded-lg overflow-hidden">
-                    <Image
-                      src={listingWithNumber.images[0]}
-                      alt={listingWithNumber.title}
-                      fill
-                      className="object-contain"
-                      priority
-                    />
-                  </div>
-
-                  {/* Thumbnail Grid */}
-                  {listingWithNumber.images.length > 1 && (
-                    <div className="grid grid-cols-4 gap-2">
-                      {listingWithNumber.images.slice(1).map((image, index) => (
-                        <div
-                          key={index}
-                          className="relative w-full h-24 bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
-                        >
-                          <Image
-                            src={image}
-                            alt={`${listingWithNumber.title} ${index + 2}`}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div className="h-96 flex items-center justify-center bg-gray-100">
-                  <p className="text-gray-400">{t('noImages')}</p>
-                </div>
-              )}
+              <ImageGallery
+                images={listingWithNumber.images}
+                title={listingWithNumber.title}
+                noImagesText={t('noImages')}
+              />
             </div>
 
             {/* Details */}

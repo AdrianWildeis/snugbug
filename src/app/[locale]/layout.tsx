@@ -4,6 +4,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { SessionProvider } from 'next-auth/react';
 import { Header } from '@/components/layout/Header';
+import { BottomNav } from '@/components/layout/BottomNav';
+import { auth } from '@/auth';
 import "../globals.css";
 
 const geistSans = Geist({
@@ -30,16 +32,18 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   const messages = await getMessages();
+  const session = await auth();
 
   return (
     <html lang={locale}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased pb-16 md:pb-0`}
       >
         <SessionProvider>
           <NextIntlClientProvider messages={messages}>
             <Header />
             {children}
+            <BottomNav isAuthenticated={!!session?.user} />
           </NextIntlClientProvider>
         </SessionProvider>
       </body>
